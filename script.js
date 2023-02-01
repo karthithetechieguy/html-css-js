@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const refreshButton = document.querySelector(".refresh-btn");
+const body = document.querySelector("body");
 
 // generating random hex value 
 const generateRandomHexColor = () => {
@@ -31,9 +32,12 @@ const copyHex = (elem, hexValue) => {
     // after 1 sec, again showing the hex color value
     navigator.clipboard.writeText(hexValue).then(() => {
         hexElement.innerText = "Copied";
+        body.style.backgroundColor = hexValue;
+        body.style.transition = "2s";
         setTimeout(() => {
             hexElement.innerText = hexValue;
-        }, 1000)
+            body.style.backgroundColor = "#E3F2FD";
+        }, 2000)
     }).catch(() => {
         // showing alert while copying color code
         alert("Failed to copy the color code!")
